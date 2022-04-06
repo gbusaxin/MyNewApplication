@@ -8,4 +8,5 @@ sealed class Screens(
     object Welcome : Screens("welcome_screen")
 
     object Home : Screens("home_screen")
+
 }

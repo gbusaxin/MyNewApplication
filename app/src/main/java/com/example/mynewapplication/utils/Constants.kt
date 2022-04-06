@@ -8,4 +8,5 @@ object Constants {
     const val BASE_URL = "http://95.217.132.144"
     const val DB_NAME="app_database.db"
 
+
 }

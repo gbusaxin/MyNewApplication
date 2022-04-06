@@ -17,14 +17,14 @@ sealed class OnBoardingPage(
 
     object SecondPage : OnBoardingPage(
         image = R.drawable.ic_heart,
-        title = "Футбол",
-        description = "Футбол - это тематика приложения"
+        title = "Благодарность",
+        description = "Спасибо что скачали наше приложение"
     )
 
     object ThirdPage : OnBoardingPage(
         image = R.drawable.ic_like,
-        title = "Пожелания",
-        description = "Надеемся вам понравится это приложение"
+        title = "Футбол",
+        description = "- это тематика приложения"
     )
 }
 

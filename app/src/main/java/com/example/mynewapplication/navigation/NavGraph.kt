@@ -5,9 +5,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import coil.annotation.ExperimentalCoilApi
+import com.example.mynewapplication.presentation.screens.home.HomeScreen
 import com.example.mynewapplication.presentation.screens.splash.SplashScreen
-import com.example.mynewapplication.presentation.screens.weclome.WelcomeScreen
+import com.example.mynewapplication.presentation.screens.welcome.WelcomeScreen
+import com.google.accompanist.pager.ExperimentalPagerApi
 
+@ExperimentalPagerApi
 @ExperimentalCoilApi
 @Composable
 fun SetupNavGraph(
@@ -31,6 +34,10 @@ fun SetupNavGraph(
                 navController = navController
             )
         }
-
+        composable(
+            route = Screens.Home.route
+        ) {
+            HomeScreen()
+        }
     }
 }

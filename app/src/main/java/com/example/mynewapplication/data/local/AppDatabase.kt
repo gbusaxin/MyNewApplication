@@ -13,6 +13,6 @@ import com.example.mynewapplication.data.local.models.NewsDbModel
 )
 abstract class AppDatabase:RoomDatabase() {
 
-    abstract fun getDao()
+    abstract fun getDao():DbDao
 
 }

@@ -11,37 +11,51 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.example.mynewapplication.R
 import com.example.mynewapplication.navigation.Screens
-import com.example.mynewapplication.ui.theme.Purple200
-import com.example.mynewapplication.ui.theme.Purple700
 import kotlinx.coroutines.delay
 
 
 @ExperimentalCoilApi
 @Composable
 fun SplashScreen(
-    navController: NavHostController
+    navController: NavHostController,
+    splashViewModel: SplashViewModel = hiltViewModel()
 ) {
+    val onBoardingCompleted by splashViewModel.onBoardingCompleted.collectAsState()
+
     var startAnim by remember {
         mutableStateOf(false)
     }
+
     val alphaAnim = animateFloatAsState(
         targetValue = if (startAnim) 1f else 0f,
         animationSpec = tween(
             durationMillis = 2300
         )
     )
+
     LaunchedEffect(key1 = true) {
         startAnim = true
         delay(2500)
         navController.popBackStack()
-        navController.navigate(Screens.Welcome.route)
+        if (onBoardingCompleted) {
+            navController.navigate(
+                Screens.Home.route
+            )
+        } else {
+            navController.navigate(
+                Screens.Welcome.route
+            )
+        }
     }
+
     SplashContent(
         alpha = alphaAnim.value
     )
@@ -61,7 +75,7 @@ fun SplashContent(
     )
     Box(
         modifier = Modifier
-            .background(if (isSystemInDarkTheme()) Purple700 else Purple200)
+            .background(if (isSystemInDarkTheme()) Color.Black else Color.White)
             .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {

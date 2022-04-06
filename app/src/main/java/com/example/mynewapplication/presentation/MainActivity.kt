@@ -7,8 +7,12 @@ import androidx.navigation.compose.rememberNavController
 import coil.annotation.ExperimentalCoilApi
 import com.example.mynewapplication.navigation.SetupNavGraph
 import com.example.mynewapplication.ui.theme.MyNewApplicationTheme
+import com.google.accompanist.pager.ExperimentalPagerApi
+import dagger.hilt.android.AndroidEntryPoint
 
+@ExperimentalPagerApi
 @ExperimentalCoilApi
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

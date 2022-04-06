@@ -29,10 +29,6 @@ object DatabaseModule {
             .build()
     }
 
-    fun provideOnBoardingOperations(
-        appDatabase: AppDatabase
-    ): UseCases {
-        return UseCases()
-    }
+
 
 }
