@@ -12,6 +12,7 @@ import com.example.mynewapplication.domain.repository.OnBoardingOperations
 import com.example.mynewapplication.domain.use_cases.UseCases
 import com.example.mynewapplication.domain.use_cases.get_news.GetNewsUseCase
 import com.example.mynewapplication.domain.use_cases.get_on_boarding_state.GetOnBoardingStateUseCase
+import com.example.mynewapplication.domain.use_cases.get_selected_news.GetSelectedNewsUseCase
 import com.example.mynewapplication.domain.use_cases.load_news.LoadNewsUseCase
 import com.example.mynewapplication.domain.use_cases.set_on_boarding_state.SetOnBoardingStateUseCase
 import dagger.Module
@@ -56,7 +57,8 @@ object RepositoryModule {
             setOnBoardingState = SetOnBoardingStateUseCase(repository = repository),
             getOnBoardingState = GetOnBoardingStateUseCase(repository = repository),
             getNewsUseCase = GetNewsUseCase(repository = repository),
-            loadNewsUseCase = LoadNewsUseCase(repository = repository)
+            loadNewsUseCase = LoadNewsUseCase(repository = repository),
+            getSelectedNewsUseCase = GetSelectedNewsUseCase(repository = repository)
         )
     }
 }

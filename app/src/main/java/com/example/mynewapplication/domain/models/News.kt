@@ -1,6 +1,9 @@
 package com.example.mynewapplication.domain.models
 
+import kotlinx.serialization.Serializable
 
+
+@Serializable
 data class News(
     val image: String,
 

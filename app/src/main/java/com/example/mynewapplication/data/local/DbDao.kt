@@ -15,4 +15,7 @@ interface DbDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllNews(news: List<NewsDbModel>)
 
+    @Query("SELECT * FROM news_table WHERE title =:title")
+    suspend fun getSelectedNews(title: String): NewsDbModel
+
 }

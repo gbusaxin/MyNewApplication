@@ -5,5 +5,5 @@ import com.example.mynewapplication.data.repository.Repository
 class GetNewsUseCase(
     private val repository: Repository
 ) {
-    operator fun invoke() = repository.getAllNews()
+    suspend operator fun invoke() = repository.getAllNews()
 }

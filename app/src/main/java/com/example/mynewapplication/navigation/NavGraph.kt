@@ -1,5 +1,6 @@
 package com.example.mynewapplication.navigation
 
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -10,6 +11,7 @@ import com.example.mynewapplication.presentation.screens.splash.SplashScreen
 import com.example.mynewapplication.presentation.screens.welcome.WelcomeScreen
 import com.google.accompanist.pager.ExperimentalPagerApi
 
+@ExperimentalMaterialApi
 @ExperimentalPagerApi
 @ExperimentalCoilApi
 @Composable

@@ -17,6 +17,16 @@ sealed class BottomBarScreens(
         icon = Icons.Filled.Home
     )
 
+    object NewsDetail : BottomBarScreens(
+        route = "news_detail/{title}",
+        "Новости",
+        icon = Icons.Filled.Home
+    ) {
+        fun passNewsDetail(title: String): String {
+            return "news_detail/$title"
+        }
+    }
+
     object Matches : BottomBarScreens(
         route = "matches",
         title = "Матчи",

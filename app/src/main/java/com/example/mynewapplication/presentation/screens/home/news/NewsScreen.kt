@@ -26,9 +26,12 @@ fun NewsScreen(
     navController: NavHostController,
     newsViewModel: NewsViewModel = hiltViewModel()
 ) {
-
+    Log.d("CHECK_MODEL_VER",newsViewModel.toString())
     val news: List<News> by newsViewModel.newsList.collectAsState(initial = Collections.emptyList())
     Log.d("CHECK_NEWS_SCREEN",news.toString())
-    ListNews(list = news)
+    ListNews(
+        list = news,
+        navController = navController
+    )
 
 }

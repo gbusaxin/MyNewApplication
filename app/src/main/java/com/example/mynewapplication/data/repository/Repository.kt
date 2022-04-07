@@ -18,12 +18,16 @@ class Repository @Inject constructor(
         return onBoardingOperations.getOnBoardingState()
     }
 
-    fun getAllNews(): Flow<List<News>> {
+    suspend fun getAllNews(): Flow<List<News>> {
         return newsRepository.getAllNews()
     }
 
     suspend fun loadAllNews() {
         newsRepository.loadAllNews()
+    }
+
+    suspend fun getSelectedNews(title: String): News {
+        return newsRepository.getSelectedNews(title = title)
     }
 
 }

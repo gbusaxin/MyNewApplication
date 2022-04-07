@@ -1,5 +1,7 @@
 package com.example.mynewapplication.presentation.common
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
@@ -7,23 +9,26 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.mynewapplication.domain.models.News
+import com.example.mynewapplication.navigation.BottomBarScreens
 import com.example.mynewapplication.presentation.components.ExpandableCard
 import com.example.mynewapplication.ui.theme.SMALL_PADDING
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 
 @ExperimentalMaterialApi
 @Composable
 fun ListNews(
-//    navController: NavHostController,
+    navController: NavHostController,
     list: List<News>
 ) {
-    val data = rememberLazyListState()
     LazyColumn(
+        modifier = Modifier
+            .background(if (isSystemInDarkTheme()) Color.Black else Color.White),
         contentPadding = PaddingValues(all = SMALL_PADDING),
         verticalArrangement = Arrangement.spacedBy(SMALL_PADDING)
     ) {
@@ -33,9 +38,8 @@ fun ListNews(
         ) {
             it?.let {
                 ExpandableCard(
-                    title = it.title,
-                    body = it.sDesc,
-                    itemClickListener = { }
+                    news = it,
+                    navController = navController
                 )
             }
         }
@@ -54,6 +58,7 @@ fun ListNewsPreview() {
             News(",", "ttile", "sdesc", "", ""),
             News(",", "ttile", "sdesc", "", ""),
             News(",", "ttile", "sdesc", "", "")
-        )
+        ),
+        navController = rememberNavController()
     )
 }

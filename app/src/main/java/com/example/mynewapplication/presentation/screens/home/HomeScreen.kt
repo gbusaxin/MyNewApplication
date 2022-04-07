@@ -12,6 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mynewapplication.navigation.BottomBarScreens
 import com.example.mynewapplication.navigation.BottomNavGraph
 
+@ExperimentalMaterialApi
 @Composable
 fun HomeScreen() {
     val navController = rememberNavController()

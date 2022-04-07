@@ -7,6 +7,8 @@ interface NewsRepository {
 
     suspend fun loadAllNews()
 
-    fun getAllNews(): Flow<List<News>>
+    suspend fun getAllNews(): Flow<List<News>>
+
+    suspend fun getSelectedNews(title:String) : News
 
 }
