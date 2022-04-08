@@ -17,7 +17,7 @@ class NewsRepositoryImpl @Inject constructor(
     private val newsMapper: NewsMapper
 ) : NewsRepository {
 
-    private val dao = database.getDao()
+    private val dao = database.getNewsDao()
 
     override suspend fun loadAllNews() {
         val dto = apiService.getAllNews()

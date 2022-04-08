@@ -7,7 +7,7 @@ import androidx.room.Query
 import com.example.mynewapplication.data.local.models.NewsDbModel
 
 @Dao
-interface DbDao {
+interface NewsDao {
 
     @Query("SELECT * FROM news_table")
     fun getAllNews(): List<NewsDbModel>

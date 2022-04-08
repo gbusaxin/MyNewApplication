@@ -1,101 +1,178 @@
 package com.example.mynewapplication.presentation.screens.home.news.detail
 
-import android.util.Log
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.rememberScrollableState
-import androidx.compose.foundation.gestures.scrollable
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.example.mynewapplication.R
-import com.example.mynewapplication.domain.models.News
 import com.example.mynewapplication.ui.theme.LARGE_PADDING
 import com.example.mynewapplication.ui.theme.MEDIUM_PADDING
+import com.example.mynewapplication.ui.theme.SMALL_PADDING
 
 
+@ExperimentalCoilApi
 @Composable
 fun NewsScreenDetail(
-    navController: NavController,
+    navController: NavHostController,
     newsDetailViewModel: NewsDetailViewModel = hiltViewModel()
 ) {
-
     val selectedNews by newsDetailViewModel.selectedNews.collectAsState()
-    Log.d("CHECK_SELECTED_SCREEN", selectedNews.toString())
-
+    selectedNews?.apply {
+        ContentDetail(
+            navController = navController,
+            title = title,
+            sDesc = sDesc,
+            date = date,
+            description = description,
+            image = image
+        )
+    }
 }
 
+@ExperimentalCoilApi
 @Composable
 fun ContentDetail(
-    news: News,
-    scrollableState: Float = 0f,
+    navController: NavHostController,
     title: String,
     sDesc: String,
     date: String,
-    description: String
+    description: String,
+    image: String
 ) {
-
-    val scroll = rememberScrollableState(consumeScrollDelta = { scrollableState })
-
-    val painter = rememberImagePainter(data = news.image) {
+    val painter = rememberImagePainter(data = image) {
         placeholder(R.drawable.ic_smile)
         error(R.drawable.ic_error)
     }
-
-
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .scrollable(
-                state = scroll,
-                orientation = Orientation.Vertical
-            )
             .background(if (isSystemInDarkTheme()) Color.Black else Color.White)
+            .verticalScroll(state = rememberScrollState()),
+        contentAlignment = Alignment.TopStart
     ) {
-        Surface(shape = RoundedCornerShape(size = LARGE_PADDING)) {
-            Image(
-                modifier = Modifier.fillMaxWidth(),
-                painter = painter,
-                contentDescription = "image",
-                contentScale = ContentScale.Crop
-            )//image
-        }
-        Surface(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(all = MEDIUM_PADDING)
+                .padding(
+                    top = LARGE_PADDING,
+                    bottom = MEDIUM_PADDING
+                )
         ) {
-            Text(
-                text = title,
-                color = if (isSystemInDarkTheme()) Color.White else Color.Black,
-                fontSize = MaterialTheme.typography.h5.fontSize,
-                fontWeight = FontWeight.Bold
-            )
-            Text(
-                text = sDesc,
-                color = if (isSystemInDarkTheme()) Color.White else Color.DarkGray,
-                fontSize = MaterialTheme.typography.body1.fontSize,
-                fontWeight = FontWeight.Bold
-            )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.Top,
+                horizontalArrangement = Arrangement.Start
 
+            ) {
+                Image(
+                    modifier = Modifier.fillMaxWidth(),
+                    painter = painter,
+                    contentDescription = "image",
+                    contentScale = ContentScale.Crop
+                )
+                IconButton(
+                    modifier = Modifier.padding(all = MEDIUM_PADDING),
+                    onClick = {
+                        navController.popBackStack()
+                    }
+                ) {
+                    Icon(
+                        modifier = Modifier.size(32.dp),
+                        imageVector = Icons.Default.Close,
+                        contentDescription = "закрыть",
+                        tint = Color.White
+                    )
+                }
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = title,
+                    color = if (isSystemInDarkTheme()) Color.White else Color.Black,
+                    fontSize = MaterialTheme.typography.h5.fontSize,
+                    fontWeight = FontWeight.Bold
+                )
+            } //title
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = MEDIUM_PADDING),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = sDesc,
+                    color = if (isSystemInDarkTheme()) Color.LightGray else Color.DarkGray,
+                    fontSize = MaterialTheme.typography.subtitle1.fontSize,
+                    fontWeight = FontWeight.Bold
+                )
+            } // sDesc
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = MEDIUM_PADDING, start = SMALL_PADDING),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Start
+            ) {
+                Text(
+                    text = date,
+                    color = if (isSystemInDarkTheme()) Color.LightGray else Color.DarkGray,
+                    fontSize = MaterialTheme.typography.subtitle1.fontSize,
+                    fontWeight = FontWeight.Thin
+                )
+            } // date
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = MEDIUM_PADDING),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Start
+            ) {
+                Text(
+                    text = description,
+                    color = if (isSystemInDarkTheme()) Color.White else Color.Black,
+                    fontSize = MaterialTheme.typography.body1.fontSize,
+                    fontWeight = FontWeight.Normal
+                )
+            } // description
         }
     }
+}
 
+@ExperimentalCoilApi
+@Preview
+@Composable
+fun ContentDetailPreview() {
+    ContentDetail(
+        navController = rememberNavController(),
+        title = "Title Title Title Title ",
+        sDesc = "Title Title Title Title Title Title Title Title Title Title ",
+        date = "date",
+        description = "Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title ",
+        image = ""
+    )
 }
