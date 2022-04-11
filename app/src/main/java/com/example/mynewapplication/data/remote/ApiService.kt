@@ -2,6 +2,7 @@ package com.example.mynewapplication.data.remote
 
 import com.example.mynewapplication.data.remote.models.FixturesDto
 import com.example.mynewapplication.data.remote.models.NewsDto
+import com.example.mynewapplication.data.remote.models.ResultsDto
 import retrofit2.http.GET
 
 interface ApiService {
@@ -10,7 +11,7 @@ interface ApiService {
     suspend fun getAllFixtures(): List<FixturesDto>
 
     @GET("/mynewapp/uefa_results.json")
-    suspend fun getAllResults()
+    suspend fun getAllResults(): List<ResultsDto>
 
     @GET("/mynewapp/uefa_groups.json")
     suspend fun getAllGroups()

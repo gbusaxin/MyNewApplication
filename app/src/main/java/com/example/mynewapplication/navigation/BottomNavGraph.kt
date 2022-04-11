@@ -7,12 +7,16 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import coil.annotation.ExperimentalCoilApi
 import com.example.mynewapplication.presentation.screens.home.groups.GroupsScreen
 import com.example.mynewapplication.presentation.screens.home.matches.MatchesScreen
 import com.example.mynewapplication.presentation.screens.home.news.NewsScreen
 import com.example.mynewapplication.presentation.screens.home.news.detail.NewsScreenDetail
 import com.example.mynewapplication.utils.Constants.SELECTED_NEWS_KEY
+import com.google.accompanist.pager.ExperimentalPagerApi
 
+@ExperimentalCoilApi
+@ExperimentalPagerApi
 @ExperimentalMaterialApi
 @Composable
 fun BottomNavGraph(

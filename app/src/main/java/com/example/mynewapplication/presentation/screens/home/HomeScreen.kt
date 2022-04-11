@@ -9,9 +9,13 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import coil.annotation.ExperimentalCoilApi
 import com.example.mynewapplication.navigation.BottomBarScreens
 import com.example.mynewapplication.navigation.BottomNavGraph
+import com.google.accompanist.pager.ExperimentalPagerApi
 
+@ExperimentalCoilApi
+@ExperimentalPagerApi
 @ExperimentalMaterialApi
 @Composable
 fun HomeScreen() {

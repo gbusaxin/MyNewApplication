@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 class NewsRepositoryImpl @Inject constructor(
-    database: AppDatabase,
+    private val database: AppDatabase,
     private val apiService: ApiService,
     private val newsMapper: NewsMapper
 ) : NewsRepository {

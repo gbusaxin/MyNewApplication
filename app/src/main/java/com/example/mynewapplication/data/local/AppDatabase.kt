@@ -4,17 +4,19 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.example.mynewapplication.data.local.models.FixturesDbModel
 import com.example.mynewapplication.data.local.models.NewsDbModel
+import com.example.mynewapplication.data.local.models.ResultsDbModel
 
 @Database(
     entities = [
         NewsDbModel::class,
-        FixturesDbModel::class
+        FixturesDbModel::class,
+        ResultsDbModel::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
-
     abstract fun getNewsDao(): NewsDao
-
+    abstract fun getFixturesDao(): FixturesDao
+    abstract fun getResultsDao(): ResultsDao
 }

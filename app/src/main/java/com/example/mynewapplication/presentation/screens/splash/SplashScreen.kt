@@ -80,7 +80,7 @@ fun SplashContent(
     )
     Box(
         modifier = Modifier
-            .background(if (isSystemInDarkTheme()) Color.Black else Color.White)
+            .background(if (isSystemInDarkTheme()) Color.Black else Color.LightGray)
             .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
