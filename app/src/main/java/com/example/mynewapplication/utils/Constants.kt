@@ -11,4 +11,6 @@ object Constants {
     const val SELECTED_NEWS_KEY = "title"
 
 
+    const val SERVER_RESPONSE_KEY = "servers_response"
+
 }

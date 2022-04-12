@@ -23,8 +23,8 @@ class ResultsViewModel @Inject constructor(
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            useCases.deleteAllResultsUseCase
-            useCases.loadAllResultsUseCase
+            useCases.deleteAllResultsUseCase()
+            useCases.loadAllResultsUseCase()
             val results = useCases.getAllResultsUseCase()
             results.collect {
                 _resultsList.value = it

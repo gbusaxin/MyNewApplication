@@ -41,10 +41,11 @@ fun ResultsScreen(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .background(if (isSystemInDarkTheme()) Color.Yellow else Color.White),
+            .background(if (isSystemInDarkTheme()) Color.Black else Color.White),
         contentPadding = PaddingValues(all = SMALL_PADDING),
         verticalArrangement = Arrangement.spacedBy(SMALL_PADDING)
     ) {
+
         items(
             items = listResults
         ) {
@@ -139,14 +140,19 @@ fun ResultsItem(
             }//team2
         }//Row
 
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(alignment = Alignment.CenterHorizontally),
-            text = result,
-            fontSize = MaterialTheme.typography.h3.fontSize,
-            fontWeight = FontWeight.Bold
-        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                text = result,
+                fontSize = MaterialTheme.typography.h3.fontSize,
+                fontWeight = FontWeight.Bold
+            )
+        }
 
         Row(
             modifier = Modifier.fillMaxWidth()

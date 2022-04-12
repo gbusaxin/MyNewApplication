@@ -1,9 +1,9 @@
 package com.example.mynewapplication.data.remote
 
-import com.example.mynewapplication.data.remote.models.FixturesDto
-import com.example.mynewapplication.data.remote.models.NewsDto
-import com.example.mynewapplication.data.remote.models.ResultsDto
+import com.example.mynewapplication.data.remote.models.*
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 
 interface ApiService {
 
@@ -14,8 +14,12 @@ interface ApiService {
     suspend fun getAllResults(): List<ResultsDto>
 
     @GET("/mynewapp/uefa_groups.json")
-    suspend fun getAllGroups()
+    suspend fun getAllGroups(): List<GroupDto>
 
     @GET("/mynewapp/uefa_news.json")
     suspend fun getAllNews(): List<NewsDto>
+
+    @POST("/mynewapp/webview/splash.php")
+    suspend fun sendLocale(@Body locale: RequestDto): ResponseDto
+
 }

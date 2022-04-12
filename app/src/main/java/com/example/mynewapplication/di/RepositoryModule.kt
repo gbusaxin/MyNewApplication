@@ -3,25 +3,27 @@ package com.example.mynewapplication.di
 import android.content.Context
 import com.example.mynewapplication.data.local.AppDatabase
 import com.example.mynewapplication.data.mappers.FixturesMapper
+import com.example.mynewapplication.data.mappers.GroupMapper
 import com.example.mynewapplication.data.mappers.NewsMapper
 import com.example.mynewapplication.data.mappers.ResultsMapper
 import com.example.mynewapplication.data.remote.ApiService
 import com.example.mynewapplication.data.repository.*
-import com.example.mynewapplication.domain.repository.FixturesRepository
-import com.example.mynewapplication.domain.repository.NewsRepository
-import com.example.mynewapplication.domain.repository.OnBoardingOperations
-import com.example.mynewapplication.domain.repository.ResultsRepository
+import com.example.mynewapplication.domain.repository.*
 import com.example.mynewapplication.domain.use_cases.UseCases
 import com.example.mynewapplication.domain.use_cases.delete_all_fixtures.DeleteAllFixturesUseCase
 import com.example.mynewapplication.domain.use_cases.delete_all_results.DeleteAllResultsUseCase
 import com.example.mynewapplication.domain.use_cases.get_all_fixtures.GetAllFixturesUseCase
+import com.example.mynewapplication.domain.use_cases.get_all_groups.GetAllGroupsUseCase
 import com.example.mynewapplication.domain.use_cases.get_all_results.GetAllResultsUseCase
+import com.example.mynewapplication.domain.use_cases.get_locale.GetLocaleUseCase
 import com.example.mynewapplication.domain.use_cases.get_news.GetNewsUseCase
 import com.example.mynewapplication.domain.use_cases.get_on_boarding_state.GetOnBoardingStateUseCase
 import com.example.mynewapplication.domain.use_cases.get_selected_news.GetSelectedNewsUseCase
 import com.example.mynewapplication.domain.use_cases.load_all_fixtures.LoadAllFixturesUseCase
+import com.example.mynewapplication.domain.use_cases.load_all_groups.LoadAllGroupsUseCase
 import com.example.mynewapplication.domain.use_cases.load_all_results.LoadAllResultsUseCase
 import com.example.mynewapplication.domain.use_cases.load_news.LoadNewsUseCase
+import com.example.mynewapplication.domain.use_cases.send_locale.SendLocaleUseCase
 import com.example.mynewapplication.domain.use_cases.set_on_boarding_state.SetOnBoardingStateUseCase
 import dagger.Module
 import dagger.Provides
@@ -84,6 +86,30 @@ object RepositoryModule {
 
     @Provides
     @Singleton
+    fun provideGroupRepository(
+        database: AppDatabase,
+        apiService: ApiService,
+        groupMapper: GroupMapper
+    ): GroupRepository {
+        return GroupRepositoryImpl(
+            appDatabase = database,
+            apiService = apiService,
+            groupMapper = groupMapper
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideChromeRepository(
+        apiService: ApiService
+    ): ChromeRepository {
+        return ChromeRepositoryImpl(
+            apiService = apiService
+        )
+    }
+
+    @Provides
+    @Singleton
     fun provideUseCases(
         repository: Repository
     ): UseCases {
@@ -98,7 +124,11 @@ object RepositoryModule {
             deleteAllFixturesUseCase = DeleteAllFixturesUseCase(repository = repository),
             loadAllResultsUseCase = LoadAllResultsUseCase(repository = repository),
             getAllResultsUseCase = GetAllResultsUseCase(repository = repository),
-            deleteAllResultsUseCase = DeleteAllResultsUseCase(repository = repository)
+            deleteAllResultsUseCase = DeleteAllResultsUseCase(repository = repository),
+            getAllGroupsUseCase = GetAllGroupsUseCase(repository = repository),
+            loadAllGroupsUseCase = LoadAllGroupsUseCase(repository = repository),
+            getLocaleUseCase = GetLocaleUseCase(repository = repository),
+            sendLocaleUseCase = SendLocaleUseCase(repository = repository)
         )
     }
 }

@@ -7,10 +7,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import coil.annotation.ExperimentalCoilApi
 import com.example.mynewapplication.domain.models.TabItem
 import com.google.accompanist.pager.*
 import kotlinx.coroutines.launch
 
+@ExperimentalCoilApi
 @ExperimentalPagerApi
 @Composable
 fun MatchesScreen() {

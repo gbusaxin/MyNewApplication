@@ -1,10 +1,11 @@
 package com.example.mynewapplication.data.remote.models
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.Expose
 
 import com.google.gson.annotations.SerializedName
 
-
+@Keep
 data class ResultsDto(
     @SerializedName("team1")
     @Expose

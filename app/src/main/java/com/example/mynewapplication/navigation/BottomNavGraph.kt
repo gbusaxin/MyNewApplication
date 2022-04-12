@@ -1,5 +1,6 @@
 package com.example.mynewapplication.navigation
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -15,6 +16,7 @@ import com.example.mynewapplication.presentation.screens.home.news.detail.NewsSc
 import com.example.mynewapplication.utils.Constants.SELECTED_NEWS_KEY
 import com.google.accompanist.pager.ExperimentalPagerApi
 
+@ExperimentalFoundationApi
 @ExperimentalCoilApi
 @ExperimentalPagerApi
 @ExperimentalMaterialApi

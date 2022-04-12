@@ -1,5 +1,6 @@
 package com.example.mynewapplication.presentation.screens.home
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -14,6 +15,7 @@ import com.example.mynewapplication.navigation.BottomBarScreens
 import com.example.mynewapplication.navigation.BottomNavGraph
 import com.google.accompanist.pager.ExperimentalPagerApi
 
+@ExperimentalFoundationApi
 @ExperimentalCoilApi
 @ExperimentalPagerApi
 @ExperimentalMaterialApi

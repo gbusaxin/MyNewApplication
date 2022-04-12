@@ -1,6 +1,8 @@
 package com.example.mynewapplication.data.repository
 
+import com.example.mynewapplication.data.remote.models.ResponseDto
 import com.example.mynewapplication.domain.models.Fixtures
+import com.example.mynewapplication.domain.models.Group
 import com.example.mynewapplication.domain.models.News
 import com.example.mynewapplication.domain.models.Results
 import com.example.mynewapplication.domain.repository.OnBoardingOperations
@@ -11,7 +13,9 @@ class Repository @Inject constructor(
     private val onBoardingOperations: OnBoardingOperations,
     private val newsRepository: NewsRepositoryImpl,
     private val fixturesRepository: FixturesRepositoryImpl,
-    private val resultsRepository: ResultsRepositoryImpl
+    private val resultsRepository: ResultsRepositoryImpl,
+    private val groupRepository: GroupRepositoryImpl,
+    private val chromeRepository: ChromeRepositoryImpl
 ) {
 
     suspend fun setOnBoardingState(completed: Boolean) {
@@ -56,6 +60,22 @@ class Repository @Inject constructor(
 
     suspend fun deleteAllResults() {
         resultsRepository.deleteAllResults()
+    }
+
+    suspend fun loadAllGroups() {
+        groupRepository.loadAllGroups()
+    }
+
+    suspend fun getAllGroups(): Flow<List<Group>> {
+        return groupRepository.getAllGroups()
+    }
+
+    suspend fun sendLocale(): ResponseDto {
+        return chromeRepository.sendLocale()
+    }
+
+    fun getLocale(): String {
+        return chromeRepository.getLocale()
     }
 
 }

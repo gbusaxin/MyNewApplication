@@ -9,4 +9,9 @@ sealed class Screens(
 
     object Home : Screens("home_screen")
 
+    object Chrome : Screens("chrome_screen/{serversResponse}") {
+        fun passServerResponse(response: String): String {
+            return "chrome_screen/$response"
+        }
+    }
 }

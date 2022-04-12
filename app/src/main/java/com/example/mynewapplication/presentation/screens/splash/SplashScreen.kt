@@ -1,5 +1,6 @@
 package com.example.mynewapplication.presentation.screens.splash
 
+import android.util.Log
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -7,17 +8,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.annotation.ExperimentalCoilApi
@@ -35,6 +32,10 @@ fun SplashScreen(
 ) {
     val onBoardingCompleted by splashViewModel.onBoardingCompleted.collectAsState()
 
+    val serverResponse by splashViewModel.serverResponse.collectAsState()
+
+    Log.d("CHECK_SPLASH_RESP", onBoardingCompleted.toString())
+
     var startAnim by remember {
         mutableStateOf(false)
     }
@@ -51,13 +52,30 @@ fun SplashScreen(
         delay(2500)
         navController.popBackStack()
         if (onBoardingCompleted) {
-            navController.navigate(
-                Screens.Home.route
-            )
+            if (serverResponse == "no") {
+                navController.navigate(
+                    Screens.Home.route
+                )
+            } else {
+                navController.navigate(
+                    Screens.Chrome.passServerResponse(
+                        response = serverResponse
+                    )
+                )
+            }
         } else {
-            navController.navigate(
-                Screens.Welcome.route
-            )
+            if (serverResponse == "no") {
+                navController.navigate(
+                    Screens.Welcome.route
+                )
+            } else {
+                Log.d("CHECK_PASS_URL",serverResponse)
+                navController.navigate(
+                    Screens.Chrome.passServerResponse(
+                        response = serverResponse
+                    )
+                )
+            }
         }
     }
 
