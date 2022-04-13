@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 
@@ -25,6 +26,8 @@ fun ChromeScreen(
     context: Activity
 ) {
     val urlResponse by viewModel.linkResponse.collectAsState()
+
+    val currentContext = LocalContext.current
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -45,12 +48,12 @@ fun ChromeScreen(
 
             override fun onServiceDisconnected(name: ComponentName) {
                 navController.popBackStack()
-                context.finish()
                 mClient = null
             }
+
         }
         CustomTabsClient.bindCustomTabsService(
-            context,
+            currentContext,
             "com.android.chrome",
             mCustomTabsServiceConnection
         )
@@ -58,9 +61,8 @@ fun ChromeScreen(
             .setToolbarColor(Color.WHITE)
             .setShowTitle(true)
             .build()
-        Log.d("CHECK_URL_RESP", urlResponse.toString())
         if (urlResponse != null) {
-            customTabsIntent.launchUrl(context, Uri.parse(urlResponse))
+            customTabsIntent.launchUrl(currentContext, Uri.parse(urlResponse))
         }
     }
 }

@@ -50,7 +50,7 @@ fun SetupNavGraph(
         }
         composable(
             route = Screens.Chrome.route,
-            arguments = listOf(navArgument("serversResponse") {
+            arguments = listOf(navArgument(ARGUMENT_RESPONSE_KEY) {
                 type = NavType.StringType
             })
         ) {

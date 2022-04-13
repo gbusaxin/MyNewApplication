@@ -1,6 +1,5 @@
 package com.example.mynewapplication.presentation.screens.splash
 
-import android.util.Log
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -22,6 +21,8 @@ import coil.compose.rememberImagePainter
 import com.example.mynewapplication.R
 import com.example.mynewapplication.navigation.Screens
 import kotlinx.coroutines.delay
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 
 @ExperimentalCoilApi
@@ -33,8 +34,6 @@ fun SplashScreen(
     val onBoardingCompleted by splashViewModel.onBoardingCompleted.collectAsState()
 
     val serverResponse by splashViewModel.serverResponse.collectAsState()
-
-    Log.d("CHECK_SPLASH_RESP", onBoardingCompleted.toString())
 
     var startAnim by remember {
         mutableStateOf(false)
@@ -58,9 +57,7 @@ fun SplashScreen(
                 )
             } else {
                 navController.navigate(
-                    Screens.Chrome.passServerResponse(
-                        response = serverResponse
-                    )
+                    route = Screens.Chrome.passResponse(serverResponse)
                 )
             }
         } else {
@@ -69,11 +66,8 @@ fun SplashScreen(
                     Screens.Welcome.route
                 )
             } else {
-                Log.d("CHECK_PASS_URL",serverResponse)
                 navController.navigate(
-                    Screens.Chrome.passServerResponse(
-                        response = serverResponse
-                    )
+                    route = Screens.Chrome.passResponse(serverResponse)
                 )
             }
         }

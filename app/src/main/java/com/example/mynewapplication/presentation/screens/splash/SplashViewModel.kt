@@ -10,6 +10,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,8 +27,11 @@ class SplashViewModel @Inject constructor(
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            _serverResponse.value = useCases.sendLocaleUseCase().url
-            Log.d("CHECK_RESP_CHROME",_serverResponse.value)
+            val encodedResponse = URLEncoder.encode(
+                useCases.sendLocaleUseCase().url,
+                StandardCharsets.UTF_8.toString()
+            )
+            _serverResponse.value = encodedResponse
             _onBoardingCompleted.value =
                 useCases.getOnBoardingState().stateIn(viewModelScope).value
         }
