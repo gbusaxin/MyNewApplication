@@ -97,7 +97,7 @@ fun ExpandableCard(
                             Log.d("CLICK_NEWS", "click -> ${news.title}")
                             navController.navigate(
                                 BottomBarScreens.NewsDetail.passNewsDetail(
-                                    title = news.title
+                                    title = news.id.toString()
                                 )
                             )
                         }

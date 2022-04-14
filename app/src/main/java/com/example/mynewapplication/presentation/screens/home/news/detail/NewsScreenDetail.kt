@@ -66,8 +66,7 @@ fun ContentDetail(
         modifier = Modifier
             .fillMaxSize()
             .background(if (isSystemInDarkTheme()) Color.Black else Color.White)
-            .verticalScroll(state = rememberScrollState()),
-        contentAlignment = Alignment.TopStart
+            .verticalScroll(state = rememberScrollState())
     ) {
         Column(
             modifier = Modifier
@@ -78,30 +77,38 @@ fun ContentDetail(
                 )
         ) {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.Top,
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start
-
             ) {
-                Image(
-                    modifier = Modifier.fillMaxWidth(),
-                    painter = painter,
-                    contentDescription = "image",
-                    contentScale = ContentScale.Crop
-                )
-                IconButton(
-                    modifier = Modifier.padding(all = MEDIUM_PADDING),
-                    onClick = {
-                        navController.popBackStack()
-                    }
+                Box(
+                    modifier = Modifier.fillMaxWidth()
                 ) {
-                    Icon(
-                        modifier = Modifier.size(32.dp),
-                        imageVector = Icons.Default.Close,
-                        contentDescription = "закрыть",
-                        tint = Color.White
+                    Image(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(200.dp)
+                            .align(Alignment.TopStart),
+                        painter = painter,
+                        contentDescription = "image",
+                        contentScale = ContentScale.FillWidth
                     )
+                }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.End
+                ) {
+                    IconButton(
+                        modifier = Modifier.padding(all = SMALL_PADDING),
+                        onClick = { navController.popBackStack() }
+                    ) {
+                        Icon(
+                            modifier = Modifier.size(32.dp),
+                            imageVector = Icons.Default.Close,
+                            contentDescription = "закрыть",
+                            tint = Color.White
+                        )
+                    }
                 }
             }
             Row(

@@ -1,6 +1,7 @@
 package com.example.mynewapplication.domain.use_cases
 
 import com.example.mynewapplication.domain.use_cases.delete_all_fixtures.DeleteAllFixturesUseCase
+import com.example.mynewapplication.domain.use_cases.delete_all_news.DeleteAllNewsUseCase
 import com.example.mynewapplication.domain.use_cases.delete_all_results.DeleteAllResultsUseCase
 import com.example.mynewapplication.domain.use_cases.get_all_fixtures.GetAllFixturesUseCase
 import com.example.mynewapplication.domain.use_cases.get_all_groups.GetAllGroupsUseCase
@@ -31,5 +32,6 @@ data class UseCases(
     val loadAllGroupsUseCase: LoadAllGroupsUseCase,
     val getAllGroupsUseCase: GetAllGroupsUseCase,
     val getLocaleUseCase: GetLocaleUseCase,
-    val sendLocaleUseCase: SendLocaleUseCase
+    val sendLocaleUseCase: SendLocaleUseCase,
+    val deleteAllNewsUseCase: DeleteAllNewsUseCase
 )

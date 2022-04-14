@@ -35,7 +35,11 @@ class NewsRepositoryImpl @Inject constructor(
         return qwe.asStateFlow()
     }
 
-    override suspend fun getSelectedNews(title: String): News {
-        return newsMapper.mapDbModelToEntity(dao.getSelectedNews(title = title))
+    override suspend fun getSelectedNews(id: Int): News {
+        return newsMapper.mapDbModelToEntity(dao.getSelectedNews(id = id))
+    }
+
+    override suspend fun deleteAllNews() {
+        dao.deleteAllNews()
     }
 }

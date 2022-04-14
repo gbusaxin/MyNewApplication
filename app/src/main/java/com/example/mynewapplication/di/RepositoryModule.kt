@@ -11,6 +11,7 @@ import com.example.mynewapplication.data.repository.*
 import com.example.mynewapplication.domain.repository.*
 import com.example.mynewapplication.domain.use_cases.UseCases
 import com.example.mynewapplication.domain.use_cases.delete_all_fixtures.DeleteAllFixturesUseCase
+import com.example.mynewapplication.domain.use_cases.delete_all_news.DeleteAllNewsUseCase
 import com.example.mynewapplication.domain.use_cases.delete_all_results.DeleteAllResultsUseCase
 import com.example.mynewapplication.domain.use_cases.get_all_fixtures.GetAllFixturesUseCase
 import com.example.mynewapplication.domain.use_cases.get_all_groups.GetAllGroupsUseCase
@@ -128,7 +129,8 @@ object RepositoryModule {
             getAllGroupsUseCase = GetAllGroupsUseCase(repository = repository),
             loadAllGroupsUseCase = LoadAllGroupsUseCase(repository = repository),
             getLocaleUseCase = GetLocaleUseCase(repository = repository),
-            sendLocaleUseCase = SendLocaleUseCase(repository = repository)
+            sendLocaleUseCase = SendLocaleUseCase(repository = repository),
+            deleteAllNewsUseCase = DeleteAllNewsUseCase(repository = repository)
         )
     }
 }

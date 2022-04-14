@@ -5,6 +5,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class News(
+    val id:Int,
+
     val image: String,
 
     val title: String,

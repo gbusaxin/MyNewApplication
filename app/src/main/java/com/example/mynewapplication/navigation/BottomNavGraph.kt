@@ -38,7 +38,7 @@ fun BottomNavGraph(
         composable(
             route = BottomBarScreens.NewsDetail.route,
             arguments = listOf(navArgument(SELECTED_NEWS_KEY) {
-                type = NavType.StringType
+                type = NavType.IntType
             })
         ) {
             NewsScreenDetail(

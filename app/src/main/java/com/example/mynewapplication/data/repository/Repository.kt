@@ -34,8 +34,12 @@ class Repository @Inject constructor(
         newsRepository.loadAllNews()
     }
 
-    suspend fun getSelectedNews(title: String): News {
-        return newsRepository.getSelectedNews(title = title)
+    suspend fun getSelectedNews(id: Int): News {
+        return newsRepository.getSelectedNews(id = id)
+    }
+
+    suspend fun deleteAllNews() {
+        newsRepository.deleteAllNews()
     }
 
     suspend fun getAllFixtures(): Flow<List<Fixtures>> {

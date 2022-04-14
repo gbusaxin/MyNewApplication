@@ -9,6 +9,8 @@ interface NewsRepository {
 
     suspend fun getAllNews(): Flow<List<News>>
 
-    suspend fun getSelectedNews(title:String) : News
+    suspend fun getSelectedNews(id:Int) : News
+
+    suspend fun deleteAllNews()
 
 }

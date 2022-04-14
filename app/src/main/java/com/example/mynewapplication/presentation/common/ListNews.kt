@@ -45,20 +45,3 @@ fun ListNews(
         }
     }
 }
-
-@ExperimentalMaterialApi
-@Preview
-@Composable
-fun ListNewsPreview() {
-    ListNews(
-        list = listOf(
-            News(",", "ttile", "sdesc", "", ""),
-            News(",", "ttile", "sdesc", "", ""),
-            News(",", "ttile", "sdesc", "", ""),
-            News(",", "ttile", "sdesc", "", ""),
-            News(",", "ttile", "sdesc", "", ""),
-            News(",", "ttile", "sdesc", "", "")
-        ),
-        navController = rememberNavController()
-    )
-}

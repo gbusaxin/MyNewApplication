@@ -24,7 +24,7 @@ class NewsDetailViewModel @Inject constructor(
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            val newsTitle = savedStateHandle.get<String>(SELECTED_NEWS_KEY)
+            val newsTitle = savedStateHandle.get<Int>(SELECTED_NEWS_KEY)
             _selectedNews.value = newsTitle?.let { useCases.getSelectedNewsUseCase(it) }
         }
     }
